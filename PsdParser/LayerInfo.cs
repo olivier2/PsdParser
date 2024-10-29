@@ -1,4 +1,6 @@
-﻿namespace PsdParser
+﻿using System;
+
+namespace PsdParser
 {
     public class LayerInfo
     {
@@ -31,7 +33,7 @@
         }
         internal LayerInfo()
         {
-            Items = [];
+            Items = new LayerRecordAndImage[]{};
         }
     }
 }

@@ -64,7 +64,7 @@
             }
         }
     }
-    [Flags]
+    //[Flags]
     public enum LayerMaskAndAdjustmentLayerDataFlags
     {
         PositionRelativeToLayer = 1,

@@ -1,4 +1,7 @@
-﻿namespace PsdParser
+﻿using System;
+using System.IO;
+
+namespace PsdParser
 {
     public class PsdFile : IDisposable
     {

@@ -1,4 +1,6 @@
-﻿namespace PsdParser
+﻿using System;
+
+namespace PsdParser
 {
     public class FileHeaderSection
     {

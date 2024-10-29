@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace PsdParser
 {
-    internal class InvalidStreamPositionException(long current, long from, long length) : Exception($"Invalid stream position. current: {current}, target: {from + length}, from: {from}, length: {length}")
+    internal class InvalidStreamPositionException : Exception
     {
+        public InvalidStreamPositionException(long current, long from, long length) : base($"Invalid stream position. current: {current}, target: {from + length}, from: {from}, length: {length}")
+        {
+
+        }
+
         public InvalidStreamPositionException(PsdBinaryReader reader, long from, long length) : this(reader.BaseStream.Position, from, length)
         {
 

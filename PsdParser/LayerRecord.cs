@@ -1,4 +1,6 @@
-﻿namespace PsdParser
+﻿using System.Collections.Generic;
+
+namespace PsdParser
 {
     public class LayerRecord
     {
@@ -54,7 +56,7 @@
             var additional = new List<AdditionalLayerInformation>();
             while (maxPadding <= extraDataPosition + ExtraDataLength - reader.BaseStream.Position)
                 additional.Add(AdditionalLayerInformation.Parse(reader, isPSB));
-            AdditionalLayerInformations = [.. additional];
+            AdditionalLayerInformations = additional.ToArray();
             if (extraDataPosition + ExtraDataLength - reader.BaseStream.Position < maxPadding)
                 reader.BaseStream.Position = extraDataPosition + ExtraDataLength;
 

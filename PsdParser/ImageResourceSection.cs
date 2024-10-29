@@ -1,4 +1,6 @@
-﻿namespace PsdParser
+﻿using System.Collections.Generic;
+
+namespace PsdParser
 {
     public class ImageResourceSection
     {
@@ -15,7 +17,7 @@
             {
                 blocks.Add(ImageResourceBlock.Parse(reader));
             }
-            Blocks = [.. blocks];
+            Blocks = blocks.ToArray();
 
 
             InvalidStreamPositionException.ThrowIfInvalid(reader, position, Length + 4);

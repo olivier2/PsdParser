@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace PsdParser
 {
-    internal class PsdBinaryReader(Stream input) : BinaryReader(input)
+    internal class PsdBinaryReader : BinaryReader
     {
+        public PsdBinaryReader(Stream input) : base(input)
+        {
+        }        
         public override ushort ReadUInt16() => BitConverter.ToUInt16(ReadBigEndian(sizeof(ushort)));
         public override short ReadInt16()=> BitConverter.ToInt16(ReadBigEndian(sizeof(short)));
 
@@ -27,7 +31,7 @@ namespace PsdParser
             readCount = ReadByte();
             var bytes = ReadBytes(readCount);
 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var result = Encoding.GetEncoding("shift-jis").GetString(bytes, 0, readCount).TrimEnd('\0');
 
             readCount++;

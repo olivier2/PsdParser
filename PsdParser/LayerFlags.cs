@@ -1,6 +1,6 @@
 ﻿namespace PsdParser
 {
-    [Flags]
+    //[Flags]
     public enum LayerFlags : byte
     {
         TransparencyProtected = 1,

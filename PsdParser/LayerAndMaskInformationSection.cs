@@ -1,4 +1,6 @@
-﻿namespace PsdParser
+﻿using System.Collections.Generic;
+
+namespace PsdParser
 {
     public class LayerAndMaskInformationSection
     {
@@ -20,7 +22,7 @@
                 if (reader.BaseStream.Position == position + 4 + Length)
                 {
                     GlobalLayerMaskInfo = new GlobalLayerMaskInfo();
-                    AdditionalLayerInformations = [];
+                    AdditionalLayerInformations = new AdditionalLayerInformation[]{};
                 }
                 else
                 {
@@ -30,7 +32,7 @@
                     var additionalInfos = new List<AdditionalLayerInformation>();
                     while (maxPadding <= position + lengthSize + Length - reader.BaseStream.Position)
                         additionalInfos.Add(AdditionalLayerInformation.Parse(reader, isPSB));
-                    AdditionalLayerInformations = [.. additionalInfos];
+                    AdditionalLayerInformations = additionalInfos.ToArray();
                     if (position + lengthSize + Length - reader.BaseStream.Position < maxPadding)
                         reader.BaseStream.Position = position + lengthSize + Length;
                 }
@@ -39,7 +41,7 @@
             {
                 LayerInfo = new LayerInfo();
                 GlobalLayerMaskInfo = new GlobalLayerMaskInfo();
-                AdditionalLayerInformations = [];
+                AdditionalLayerInformations = new AdditionalLayerInformation[]{};
             }
             InvalidStreamPositionException.ThrowIfInvalid(reader, position, lengthSize + Length);
         }

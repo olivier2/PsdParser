@@ -1,11 +1,14 @@
-﻿namespace PsdParser
+﻿using System;
+using System.Linq;
+
+namespace PsdParser
 {
     public class ChannelImageData
     {
         readonly long position;
         readonly PsdBinaryReader reader;
         readonly int width, depth;
-        readonly int[] rleIndex = [];
+        readonly int[] rleIndex = {};
 
         public ChannelImageDataCompression Compression { get; }
         public ChannelId ChannelId { get; }
